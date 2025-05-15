@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <title>QONŞU TƏHLÜKƏSİZLİK TESTİ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .captcha-box {
+            background: #2c3e50;
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #27ae60;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #219a52;
+        }
+        #loading {
+            display: none;
+            font-size: 24px;
+            color: #f1c40f;
+        }
+        .warning {
+            font-size: 40px;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="warning">⛔ QONŞU TƏHLÜKƏSİZLİYİ ⛔</h1>
+    <p>Sizin WiFi şəbəkənizdə qonşu tərəfindən aktiv təhlükə aşkarlandı!</p>
+
+    <div class="captcha-box">
+        <h3>Zəhmət olmasa insan olduğunuzu təsdiqləyin:</h3>
+        <p>4 + 1 neçə edir? (Cavabı rəqəmlə yazın)</p>
+        <input type="text" id="captcha" placeholder="Cavabı daxil edin">
+        <button onclick="checkCaptcha()">TƏSDİQLƏ</button>
+    </div>
+
+    <div id="loading">QONŞUNUZUN İP ÜNVANI YOXLANILIR... 📡</div>
+
+    <script>
+        function checkCaptcha() {
+            const answer = document.getElementById('captcha').value;
+            
+            // CAPTCHA doğru olsa belə şaka edək!
+            if (answer === '5') {
+                document.querySelector('.captcha-box').style.display = 'none';
+                document.getElementById('loading').style.display = 'block';
+                
+                setTimeout(() => {
+                    alert('XƏBƏRDARLİQ: HARUN ADLI QONŞUNUZUN TELEFONU SİZİN WİFİ ŞƏBƏKƏNİZƏ QOŞULDU!\n\nŞifrəniz: "*******" artıq oğurlandı!');
+                    document.body.innerHTML = `
+                        <h1 style="color: #e74c3c;">📶 WİFİ-NİZ HARUN TƏRƏFİNDƏN HACK EDİLDİ! 💻</h1>
+                        <p>😂</p>
+                        <img src="https://media.giphy.com/media/Lp5wuqMOmLUa6Te7hR/giphy.gif" width="300">
+                    `;
+                }, 3000);
+            } else {
+                alert("❌ Səhv cavab! Qonşunuza şübhələnməyin üçün yenidən cəhd edin.");
+            }
+        }
+    </script>
+</body>
+</html>
